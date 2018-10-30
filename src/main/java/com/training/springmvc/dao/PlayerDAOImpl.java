@@ -20,8 +20,15 @@ public class PlayerDAOImpl implements PlayerDAO {
     @Override
     public List<Player> getPlayers() {
         Session session = sessionFactory.getCurrentSession();
-        Query<Player> theQuery = session.createQuery("from Player", Player.class);
+        Query<Player> theQuery = session.createQuery("from Player order by lastName",
+                                                                Player.class);
         List<Player> players = theQuery.getResultList();
         return players;
+    }
+
+    @Override
+    public void addPlayer(Player player) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(player);
     }
 }

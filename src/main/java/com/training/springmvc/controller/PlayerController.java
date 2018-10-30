@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -22,5 +24,18 @@ public class PlayerController {
         List<Player> players = playerService.getPlayers();
         theModel.addAttribute("players", players);
         return "list-players";
+    }
+
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd(Model theModel){
+        Player player = new Player();
+        theModel.addAttribute("player", player);
+        return "player-form";
+    }
+
+    @PostMapping("/addPlayer")
+    public String addPlayer(@ModelAttribute Player player) {
+        playerService.addPlayer(player);
+        return "redirect:/player/list";
     }
 }

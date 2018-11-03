@@ -24,6 +24,9 @@
       <h3>Add player</h3>
 
       <form:form action="addPlayer" modelAttribute="player" method="POST">
+
+        <form:hidden path="id" />
+
         <table>
           <tbody>
             <tr>

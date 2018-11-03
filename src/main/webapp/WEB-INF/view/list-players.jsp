@@ -54,8 +54,8 @@
               <a href="${updateLink}">Update</a>
               |
               <a href="${deleteLink}"
-                onclick="if(!(confirm("Are you sure you want to delete this player?"))) return false">Delete</a>
-            </td>
+							   onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false">Delete</a>
+						</td>
           </tr>
 
         </c:forEach>

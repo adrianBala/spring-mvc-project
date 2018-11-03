@@ -5,10 +5,7 @@ import com.training.springmvc.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,5 +34,13 @@ public class PlayerController {
     public String addPlayer(@ModelAttribute Player player) {
         playerService.addPlayer(player);
         return "redirect:/player/list";
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("playerId") int id,
+                                    Model theModel) {
+        Player player = playerService.getPlayer(id);
+        theModel.addAttribute("player", player);
+        return "player-form";
     }
 }

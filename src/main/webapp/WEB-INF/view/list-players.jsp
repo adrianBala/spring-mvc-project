@@ -42,12 +42,19 @@
           <c:url var="updateLink" value="/player/showFormForUpdate">
             <c:param name="playerId" value="${tempPlayer.id}" />
           </c:url>
+
+          <c:url var="deleteLink" value="/player/delete">
+            <c:param name="playerId" value="${tempPlayer.id}" />
+          </c:url>
           <tr>
             <td>${tempPlayer.firstName}</td>
             <td>${tempPlayer.lastName}</td>
             <td>${tempPlayer.discipline}</td>
             <td>
               <a href="${updateLink}">Update</a>
+              |
+              <a href="${deleteLink}"
+                onclick="if(!(confirm("Are you sure you want to delete this player?"))) return false">Delete</a>
             </td>
           </tr>
 

@@ -9,4 +9,6 @@ public interface PlayerDAO {
     List<Player> getPlayers();
 
     void addPlayer(Player player);
+
+    Player getPlayer(int id);
 }

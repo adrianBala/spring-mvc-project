@@ -43,4 +43,10 @@ public class PlayerController {
         theModel.addAttribute("player", player);
         return "player-form";
     }
+
+    @GetMapping("/delete")
+    public String deletePlayer(@RequestParam("playerId") int id) {
+        playerService.deletePlayer(id);
+        return "redirect:/player/list";
+    }
 }

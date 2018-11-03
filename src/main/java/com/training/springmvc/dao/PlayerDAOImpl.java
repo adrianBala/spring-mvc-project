@@ -38,4 +38,13 @@ public class PlayerDAOImpl implements PlayerDAO {
         Player player = session.get(Player.class, id);
         return player;
     }
+
+    @Override
+    public void deletePlayer(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query theQuery =
+                session.createQuery("delete from Player where id=:playerId");
+        theQuery.setParameter("playerId", id);
+        theQuery.executeUpdate();
+    }
 }

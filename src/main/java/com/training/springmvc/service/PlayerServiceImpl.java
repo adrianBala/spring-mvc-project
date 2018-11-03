@@ -31,4 +31,10 @@ public class PlayerServiceImpl implements PlayerService {
     public Player getPlayer(int id) {
         return playerDAO.getPlayer(id);
     }
+
+    @Override
+    @Transactional
+    public void deletePlayer(int id) {
+        playerDAO.deletePlayer(id);
+    }
 }

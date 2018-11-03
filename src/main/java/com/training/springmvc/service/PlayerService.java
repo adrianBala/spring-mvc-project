@@ -9,4 +9,6 @@ public interface PlayerService {
     List<Player> getPlayers();
 
     void addPlayer(Player player);
+
+    Player getPlayer(int id);
 }

@@ -8,7 +8,7 @@
   <link type="text/css"
         rel="stylesheet"
         href="${pageContext.request.contextPath}/resources/css/style.css"
-        
+
 </head>
 
 <body>
@@ -34,13 +34,21 @@
           <th>First name</th>
           <th>Last name</th>
           <th>Discipline</th>
+          <th>Action</th>
         </tr>
 
         <c:forEach var="tempPlayer" items="${players}">
+
+          <c:url var="updateLink" value="/player/showFormForUpdate">
+            <c:param name="playerId" value="${tempPlayer.id}" />
+          </c:url>
           <tr>
             <td>${tempPlayer.firstName}</td>
             <td>${tempPlayer.lastName}</td>
             <td>${tempPlayer.discipline}</td>
+            <td>
+              <a href="${updateLink}">Update</a>
+            </td>
           </tr>
 
         </c:forEach>

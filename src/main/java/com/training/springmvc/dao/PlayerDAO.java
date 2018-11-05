@@ -13,4 +13,6 @@ public interface PlayerDAO {
     Player getPlayer(int id);
 
     void deletePlayer(int id);
+
+    List<Player> searchPlayers(String theSearchName);
 }

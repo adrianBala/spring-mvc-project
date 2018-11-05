@@ -47,4 +47,19 @@ public class PlayerDAOImpl implements PlayerDAO {
         theQuery.setParameter("playerId", id);
         theQuery.executeUpdate();
     }
+
+    @Override
+    public List<Player> searchPlayers(String theSearchName) {
+        Session session = sessionFactory.getCurrentSession();
+        Query theQuery = null;
+        if(theSearchName != null && theSearchName.trim().length() > 0) {
+            theQuery = session.createQuery("from Player where lower(firstName) " +
+                    "like: theName or lower(lastName) like: theName order by lastName", Player.class);
+            theQuery.setParameter("theName", "%" + theSearchName.toLowerCase() + "%");
+        } else {
+            theQuery = session.createQuery("from Player order by lastName", Player.class);
+        }
+        List<Player> players = theQuery.getResultList();
+        return players;
+    }
 }

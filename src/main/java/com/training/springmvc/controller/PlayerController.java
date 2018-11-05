@@ -49,4 +49,11 @@ public class PlayerController {
         playerService.deletePlayer(id);
         return "redirect:/player/list";
     }
+
+    @PostMapping("/search")
+    public String searchPlayer(@RequestParam("theSearchName") String theSearchName, Model theModel) {
+        List<Player> players = playerService.searchPlayers(theSearchName);
+        theModel.addAttribute("players", players);
+        return "list-players";
+    }
 }

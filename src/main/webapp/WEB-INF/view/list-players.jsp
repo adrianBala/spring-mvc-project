@@ -29,11 +29,13 @@
             onclick="window.location.href='showFormForAdd'; return false;"
             class="add-button"
       />
-      <form:form action="search" method="POST">
-        Search player: <input type="text" name="theSearchName"/>
+      <security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
+          <form:form action="search" method="POST">
+            Search player: <input type="text" name="theSearchName"/>
 
-        <input type="submit" value="Search" class="add-button"/>
-      </form:form>
+            <input type="submit" value="Search" class="add-button"/>
+          </form:form>
+      </security:authorize>
 
       <table>
 
@@ -58,11 +60,15 @@
             <td>${tempPlayer.lastName}</td>
             <td>${tempPlayer.discipline}</td>
             <td>
-              <a href="${updateLink}">Update</a>
+              <security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
+                <a href="${updateLink}">Update</a>
+              </security:authorize>
               |
-              <a href="${deleteLink}"
-							   onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false">Delete</a>
-						</td>
+              <security:authorize access="hasAnyRole('ADMIN')">
+                <a href="${deleteLink}"
+				    onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false">Delete</a>
+			  </security:authorize>
+			</td>
           </tr>
 
         </c:forEach>

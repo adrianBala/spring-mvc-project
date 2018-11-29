@@ -44,6 +44,7 @@
           <th>Last name</th>
           <th>Discipline</th>
           <th>Action</th>
+          <th>Notices</th>
         </tr>
 
         <c:forEach var="tempPlayer" items="${players}">
@@ -55,6 +56,11 @@
           <c:url var="deleteLink" value="/player/delete">
             <c:param name="playerId" value="${tempPlayer.id}" />
           </c:url>
+
+          <c:url var="showNotes" value="/player/show">
+            <c:param name="playerId" value="${tempPlayer.id}" />
+          </c:url>
+
           <tr>
             <td>${tempPlayer.firstName}</td>
             <td>${tempPlayer.lastName}</td>
@@ -68,6 +74,9 @@
                 <a href="${deleteLink}"
 				    onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false">Delete</a>
 			  </security:authorize>
+			</td>
+			<td>
+			    <a href="${showNotes}">Show</a>
 			</td>
           </tr>
 

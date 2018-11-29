@@ -1,5 +1,6 @@
 package com.training.springmvc.dao;
 
+import com.training.springmvc.entity.Notice;
 import com.training.springmvc.entity.Player;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,6 +37,10 @@ public class PlayerDAOImpl implements PlayerDAO {
     public Player getPlayer(int id) {
         Session session = sessionFactory.getCurrentSession();
         Player player = session.get(Player.class, id);
+        Query theQuery = session.createQuery("from Notice where player_id=:playerId", Notice.class);
+        theQuery.setParameter("playerId", id);
+        List<Notice> notices = theQuery.getResultList();
+        player.setNotices(notices);
         return player;
     }
 

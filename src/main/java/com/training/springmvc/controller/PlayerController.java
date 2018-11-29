@@ -56,4 +56,11 @@ public class PlayerController {
         theModel.addAttribute("players", players);
         return "list-players";
     }
+
+    @GetMapping("/show")
+    public String showNotes(@RequestParam("playerId") int id, Model theModel) {
+        Player player = playerService.getPlayer(id);
+        theModel.addAttribute(player);
+        return "list-notes";
+    }
 }
